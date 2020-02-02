@@ -57,7 +57,7 @@ public class MoneyDepositTest {
 
     @Test
     public void validMoneyDepositToCardOne(){
-        String amount = "2000";
+        String amount = "4000";
         customCardTo = new CardInfo(cardOne);
         customCardFrom = new CardInfo(cardTwo);
         CardDepositPage cardDepositPage = getBalanceAndGoToCardDepositPage();
@@ -119,20 +119,20 @@ public class MoneyDepositTest {
 
     @Test
     public void cantDepositAmountMoreThenBalance(){
-        String amount = "15000";
         customCardTo = new CardInfo(cardTwo);
         customCardFrom = new CardInfo(cardOne);
         CardDepositPage cardDepositPage = getBalanceAndGoToCardDepositPage();
+        String amount = String.valueOf(Integer.parseInt(customCardFrom.getStartBalance()) + 3000);
         cardDepositPage.moneyTransfer(amount, customCardFrom.getCardFullNumber());
         cardDepositPage.waitUntilErrorNotificationAppears();
     }
 
     @Test
     public void BalanceNotChangedAfterTryingDepositAmountMoreThenBalance(){
-        String amount = "40000";
         customCardTo = new CardInfo(cardOne);
         customCardFrom = new CardInfo(cardTwo);
         CardDepositPage cardDepositPage = getBalanceAndGoToCardDepositPage();
+        String amount = String.valueOf(Integer.parseInt(customCardFrom.getStartBalance()) + 3000);
         DashboardPage dashboardPage = cardDeposit(cardDepositPage, customCardFrom.getCardFullNumber(), amount);
         setCardsNewBalance(dashboardPage);
         Assertions.assertTrue(checkBalanceNotChanged());
