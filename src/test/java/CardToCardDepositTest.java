@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Selenide.close;
 import static com.codeborne.selenide.Selenide.open;
 
-public class MoneyDepositTest {
+public class CardToCardDepositTest {
     private String cardOne = "5559 0000 0000 0001";
     private String cardTwo = "5559 0000 0000 0002";
     private CardInfo customCardTo, customCardFrom;
@@ -211,7 +211,7 @@ public class MoneyDepositTest {
         cardDepositPage.getAmountField().setValue(amount);
         cardDepositPage.getFromField().setValue(customCardFrom.getCardFullNumber());
         Selenide.close();
-        open("http:/localhost:9999");
+        open("http://localhost:9999");
         DashboardPage dashboardPage = loginDashboardPage();
         setCardsNewBalance(dashboardPage);
         Assertions.assertTrue(checkBalanceNotChanged());
