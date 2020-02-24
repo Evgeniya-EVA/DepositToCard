@@ -1,5 +1,6 @@
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import org.junit.jupiter.api.Assertions;
 
 import static com.codeborne.selenide.Selenide.*;
 import static java.lang.Math.abs;
@@ -18,6 +19,11 @@ public class DashboardPage {
         cardOneInfo.waitUntil(Condition.visible, 15000);
     }
 
+//    public void setCardsNewBalance(CardInfo cardTo, CardInfo cardFrom){
+//        cardTo.setNewBalance(this.getBalance(cardTo.getCardShortNumber()));
+//        cardFrom.setNewBalance(this.getBalance(cardFrom.getCardShortNumber()));
+//    }
+
     public String getBalance(String cardNumber){
         String cardInfo;
         if (cardOneInfo.getText().contains(cardNumber)) {
@@ -28,7 +34,7 @@ public class DashboardPage {
         return balanceSplit[1].replaceAll("[\\D && [^-]]", "");
     }
 
-    public CardDepositPage cardDeposit(String cardNumber){
+    public CardDepositPage selectCardToDeposit(String cardNumber){
         if (cardOneInfo.getText().contains(cardNumber)) {
             cardOneDepositBtn.click();
         } else cardTwoDepositBtn.click();
